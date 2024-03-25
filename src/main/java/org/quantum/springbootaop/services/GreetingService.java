@@ -13,4 +13,9 @@ public class GreetingService implements IGreetingService {
         return greeting;
     }
 
+    @Override
+    public String sayHelloError(String person, String phrase) {
+        throw new RuntimeException("Cualquier error");
+    }
+
 }
