@@ -22,7 +22,7 @@ public class GreetingAspect {
         String method = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
 
-        log.info("Antes: " + method + " con los argumentos " + args);
+        log.info("Antes: {} con los argumentos {}", method, args);
     }
 
     @After("GreetingServicePointcuts.greetingLoggerPointcut()")
@@ -30,7 +30,7 @@ public class GreetingAspect {
         String method = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
 
-        log.info("Después: " + method + " con los argumentos " + args);
+        log.info("Después: {} con los argumentos {}", method, args);
     }
 
     @AfterReturning("GreetingServicePointcuts.greetingLoggerPointcut()")
@@ -38,7 +38,7 @@ public class GreetingAspect {
         String method = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
 
-        log.info("Después de retornar: " + method + " con los argumentos " + args);
+        log.info("Después de retornar: {} con los argumentos {}", method, args);
     }
 
     @AfterThrowing("GreetingServicePointcuts.greetingLoggerPointcut()")
@@ -46,7 +46,7 @@ public class GreetingAspect {
         String method = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
 
-        log.info("Después de lanzar excepción: " + method + " con los argumentos " + args);
+        log.info("Después de lanzar excepción: {} con los argumentos {}", method, args);
     }
 
     @Around("GreetingServicePointcuts.greetingLoggerPointcut()")
@@ -55,13 +55,13 @@ public class GreetingAspect {
         String args = Arrays.toString(joinPoint.getArgs());
 
         try {
-            log.info("El método " + method + "() con los parámetros " + args);
+            log.info("El método {}() con los parámetros {}", method, args);
             Object result = joinPoint.proceed();
-            log.info("El método " + method + "() retorna el resultado: " + result);
+            log.info("El método {}() retorna el resultado: {}", method, result);
 
             return result;
         } catch (Throwable e) {
-            log.error("Error en la llamada al método " + method + "(): " + e.getLocalizedMessage());
+            log.error("Error en la llamada al método {}(): {}", method, e.getLocalizedMessage());
             throw e;
         }
     }
